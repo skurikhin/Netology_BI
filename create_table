@@ -1,6 +1,5 @@
-CREATE TABLE
-account_temp (
-    user_id serial PRIMARY KEY, -- имя поля, тип данных, ограничение
-    email VARCHAR (355) UNIQUE NOT NULL,
-    last_login TIMESTAMP
-);
+SELECT films.title, persons2content.person_type
+    FROM public.films
+    JOIN public.persons2content
+       ON films.id=persons2content.film_id
+LIMIT 5;
