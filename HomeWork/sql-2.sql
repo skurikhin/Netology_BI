@@ -1,6 +1,8 @@
-SELECT 'ФИО: Капитан Америка';
+SELECT 'ФИО: Скурихин Сергей Андреевич';
+
 -- первый запрос
 SELECT * FROM ratings LIMIT 10;
 
 -- второй запрос
-SELECT userId, COUNT(*) FROM ratings GROUP BY 1 ORDER BY 2 DESC LIMIT 10;
+SELECT * FROM links 
+       WHERE imdbid
