@@ -5,10 +5,16 @@ SELECT * FROM ratings LIMIT 10;
 SELECT * FROM links
 WHERE
     r1.movieid between "100" and "1000"
-    AND r2.imdbld LIKE "%42"
+    AND r2.imdbid LIKE "%42"
     LIMIT 10;
 -- третий запрос
 SELECT * FROM links
 JOIN ratings
     ON links=ratings
-    WHERE imdbld = 5
+    WHERE imdbid = 5
+LIMIT 10;
+-- четвертый запрос
+SELECT COUNT(*)
+FROM links
+    WHERE imdbid IS NULL
+LIMIT 10;
