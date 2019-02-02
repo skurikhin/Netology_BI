@@ -4,8 +4,8 @@ SELECT * FROM ratings LIMIT 10;
 -- второй запрос
 SELECT * FROM links
 WHERE
-    movieid between "100" and "1000"
-    AND imdbid LIKE "%42"
+    movieid between 100 and 1000
+    AND imdbid LIKE '%42'
     LIMIT 10;
 -- третий запрос
 SELECT * FROM links
