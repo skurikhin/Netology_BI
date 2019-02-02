@@ -8,10 +8,11 @@ WHERE
     AND imdbid LIKE '%42'
     LIMIT 10;
 -- третий запрос
-SELECT * FROM links
-JOIN ratings
-    ON links=ratings
-    WHERE imdbid = 5
+SELECT imdbId
+FROM links
+     JOIN ratings
+     ON links.movieid = ratings.movieid
+WHERE rating = 5
 LIMIT 10;
 -- четвертый запрос
 SELECT COUNT(*)
