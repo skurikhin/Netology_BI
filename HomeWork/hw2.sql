@@ -18,3 +18,11 @@ LIMIT 10;
 SELECT COUNT(*)
 FROM links
     WHERE imdbid IS NULL;
+-- пятый запрос
+    SELECT
+        userId,
+        AVG(rating) as avg_rating
+    FROM public.ratings
+    GROUP BY userId, rating DESC
+    HAVING AVG(rating) > 3.5
+    LIMIT 10;
