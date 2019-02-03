@@ -48,3 +48,10 @@ AS (
 SELECT
   AVG (user)
   FROM users_table;
+
+
+WITH abc AS (
+SELECT userid, AVG(rating) b FROM ratings
+GROUP BY userid
+HAVING COUNT(*) > 10)
+SELECT AVG(b) FROM abc;
