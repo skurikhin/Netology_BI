@@ -31,10 +31,10 @@ LIMIT 10;
 -- шестой запрос
 SELECT imdbId
     FROM links
-    WHERE movieid (
+    WHERE movieid IN (
       SELECT movieid
       FROM ratings
-GROUP BY movieid ORDER BY random() LIMIT 1
-HAVING AVG(rating) > 3.5)
+GROUP BY movieid
+HAVING AVG(rating) > 3.5
     )
-LIMIT 10;
+LIMIT 10; -- не знаю как сделать RANDOM
