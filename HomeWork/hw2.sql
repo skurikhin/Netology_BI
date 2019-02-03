@@ -24,14 +24,15 @@ SELECT
     userId,
     AVG(rating) as avg_rating
   FROM public.ratings
-  GROUP BY userId, rating DESC
+  GROUP BY userId
   HAVING AVG(rating) > 3.5
+  ORDER BY avg_rating DESC
 LIMIT 10;
 -- ИЕРАРХИЧЕСКИЕ ЗАПРОСЫ
 -- шестой запрос
 SELECT imdbId
  FROM links
- WHERE movieid (
+ WHERE movieid IN (
    SELECT movieid
    FROM ratings
    GROUP BY movieid
@@ -41,10 +42,11 @@ LIMIT 10; -- не знаю как сделать RANDOM
 -- седьмой запрос Common Table Expressions
 WITH users_table
 AS (
-    SELECT userId, AVG (rating) as user
-    GROUP BY userId
-    HAVING COUNT (rating) > 10)
+    SELECT userid, AVG (rating) U
+    FROM ratings
+    GROUP BY userid
+    HAVING COUNT (rating) > 10
 )
 SELECT
-  AVG (user)
-  FROM users_table;
+  AVG (U)
+FROM users_table;
