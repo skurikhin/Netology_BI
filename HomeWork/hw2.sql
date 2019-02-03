@@ -41,17 +41,11 @@ LIMIT 10; -- не знаю как сделать RANDOM
 -- седьмой запрос Common Table Expressions
 WITH users_table
 AS (
-    SELECT userId, AVG (rating) as user
+    SELECT userId, AVG (rating) U
+    FROM ratings
     GROUP BY userId
-    HAVING COUNT (rating) > 10)
+    HAVING COUNT (rating) > 10
 )
 SELECT
-  AVG (user)
+  AVG (U)
   FROM users_table;
-
-
-WITH abc AS (
-SELECT userid, AVG(rating) b FROM ratings
-GROUP BY userid
-HAVING COUNT(*) > 10)
-SELECT AVG(b) FROM abc;
