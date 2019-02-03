@@ -1,25 +1,25 @@
 SELECT 'ФИО: Скурихин Сергей';
--- первый запрос
+-- первый запрос SELECT, LIMIT
 SELECT * FROM ratings LIMIT 10;
--- второй запрос
+-- второй запрос WHERE, LIKE
 SELECT * FROM links
 WHERE
     movieid between 100 and 1000
     AND imdbid LIKE '%42'
     LIMIT 10;
 -- СЛОЖНЫЕ ВЫБОРКИ
--- третий запрос
+-- третий запрос JOIN
 SELECT imdbId
 FROM links
      JOIN ratings
      ON links.movieid = ratings.movieid
 WHERE rating = 5
 LIMIT 10;
--- четвертый запрос
+-- четвертый запрос COUNT ()
 SELECT COUNT(*)
 FROM links
   WHERE imdbid IS NULL;
--- пятый запрос
+-- пятый запрос GROUP BY, HAVING
 SELECT
     userId,
     AVG(rating) as avg_rating
@@ -30,11 +30,21 @@ LIMIT 10;
 -- ИЕРАРХИЧЕСКИЕ ЗАПРОСЫ
 -- шестой запрос
 SELECT imdbId
-    FROM links
-    WHERE movieid IN (
-      SELECT movieid
-      FROM ratings
-GROUP BY movieid
-HAVING AVG(rating) > 3.5
+ FROM links
+ WHERE movieid (
+   SELECT movieid
+   FROM ratings
+   GROUP BY movieid
+   HAVING AVG(rating) > 3.5
     )
 LIMIT 10; -- не знаю как сделать RANDOM
+-- седьмой запрос Common Table Expressions
+WITH users_table
+AS (
+    SELECT userId, AVG (rating) as user
+    GROUP BY userId
+    HAVING COUNT (rating) > 10)
+)
+SELECT
+  AVG (user)
+  FROM users_table;
