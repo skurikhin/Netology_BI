@@ -17,8 +17,10 @@ WHERE rating = 5
 LIMIT 10;
 -- четвертый запрос COUNT ()
 SELECT COUNT(*)
-FROM links
-  WHERE imdbid IS NULL;
+FROM ratings RIGHT JOIN links
+    ON links.movieid=ratings.movieid
+    WHERE imdbid IS NULL;
+LIMIT 10;
 -- пятый запрос GROUP BY, HAVING
 SELECT
     userId,
