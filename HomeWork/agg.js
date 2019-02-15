@@ -1,17 +1,17 @@
-*/
-1. count elements
+/*
+-- 1. count elements
 */
 
 db.tags.count()
 
-*/
+/*
 2. count elements with 'woman'
 */
 
 
 db.tags.count({name: 'woman'})
 
-*/
+/*
 3. top-3 films 
 
 */
@@ -23,7 +23,7 @@ db.tags.aggregate
 	{$limit: 3}
 	]) ['_batch']
 );
-*/ 
+/* 
 result [
 	{
 		"_id" : "murder",
