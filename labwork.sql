@@ -1,5 +1,7 @@
-a) 
-**Query #1**
+
+/* 
+a) **Query #1**Вывести список названий департаментов и количество главных врачей в каждом из этих департаментов 
+*/
 
     (
     SELECT 
@@ -10,7 +12,7 @@ a)
       ON Department.id = Employee.Department_id
      GROUP BY Department.Name
       );
-
+/*
 | name             | chief_doc_count |
 | ---------------- | --------------- |
 | Cardiology       | 2               |
@@ -20,11 +22,12 @@ a)
 | Oncology         | 1               |
 | Therapy          | 2               |
 
----
+*/
 
-b) 
-**Query #2**
-
+/*
+b) **Query #2** Вывести список департаментов, в которых работают 3 и более сотрудников 
+(id и название департамента, количество сотрудников)
+*/
     (
     SELECT 
       	Department.id,
@@ -36,19 +39,18 @@ b)
       	GROUP BY Department.Name, Department.id
      	HAVING COUNT (Chief_doc_ig)>3
       );
-
+/*
 | id  | name       | chief_doc_count |
 | --- | ---------- | --------------- |
 | 3   | Cardiology | 4               |
 | 1   | Therapy    | 6               |
 
----
+*/
 
-[View on DB Fiddle](https://www.db-fiddle.com/)
-
-c) 
-**Query #3**
-
+/*
+c) **Query #3** Вывести список департаментов с максимальным количеством публикаций  
+(id и название департамента, количество публикаций)
+*/
     with dep_public as (
       SELECT Department.id as did, 
       Department.name as dname,  
@@ -66,16 +68,17 @@ c)
     FROM dep_public
     where Summary In (SELECT MAX (Summary) FROM dep_public LIMIT 1);
 
+/*
 | did | dname      | summary |
 | --- | ---------- | ------- |
 | 3   | Cardiology | 43      |
 | 5   | Hematology | 43      |
+*/
 
----
-
-d) 
-**Query #4**
-
+/*
+d) **Query #4** Вывести список сотрудников с минимальным количеством публикаций в своем департаменте 
+(id и название департамента, имя сотрудника, количество публикаций)
+*/
     with min_public as (
           SELECT Department.id as did, 
           Department.name as dname,  
@@ -95,17 +98,18 @@ d)
         FROM min_public
         where min_public In (SELECT MIN (min_public) FROM min_public);
 
+/*
 | did | dname   | ename   | min_public |
 | --- | ------- | ------- | ---------- |
 | 1   | Therapy | Alexey  | 1          |
 | 1   | Therapy | Klaudia | 1          |
+*/
 
----
 
-
-e) 
-
-**Query #5**
+/*
+e) **Query #5** Вывести список департаментов и среднее количество публикаций для тех департаментов, в которых работает более одного главного врача 
+(id и название департамента, среднее количество публикаций)
+*/
 
     with avg_public as (
           SELECT 
@@ -125,9 +129,10 @@ e)
             avg_public
         FROM avg_public
         where doc_count >1;
-
+/*
 | did | dname      | avg_public          |
 | --- | ---------- | ------------------- |
 | 2   | Neurology  | 11.0000000000000000 |
 | 3   | Cardiology | 10.7500000000000000 |
 | 1   | Therapy    | 3.5000000000000000  |
+*/
