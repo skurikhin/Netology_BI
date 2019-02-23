@@ -1,4 +1,4 @@
-**Schema (PostgreSQL v10.0)**
+/**Schema (PostgreSQL v10.0)**/
 
     CREATE TABLE school (
         school_id INT PRIMARY KEY,
@@ -83,7 +83,7 @@
 
 ---
 
-**Query #1**
+/**Query #1**/
 
     select SUM (course.credit)from course;
 
@@ -92,7 +92,7 @@
 | 32700 |
 
 ---
-**Query #2**
+/**Query #2**/
 
     (
      SELECT
@@ -114,7 +114,7 @@
 | Windermere       | 2              |
 
 ---
-**Query #3**
+/**Query #3**/
 
     SELECT
          school.campus,
@@ -134,7 +134,7 @@
 | Pepperdine | Abbey College    | 5              |
 
 ---
-**Query #4**
+/**Query #4**/
 
     SELECT
         school.school_name,
@@ -154,7 +154,7 @@
 | Abbey College | Pepperdine | Therapy   |
 
 ---
-**Query #5**
+/**Query #5**/
 
     SELECT
         COUNT (DISTINCT school.school_id) as schools,
@@ -172,7 +172,7 @@
 | 6       | 20        | 6           |
 
 ---
-**Query #6**
+/**Query #6**/
 
     SELECT *
     FROM programm
@@ -188,7 +188,7 @@
 | 13          | Health    | 17          | 118       |           |             |           |        |
 
 ---
-**Query #7**
+/**Query #7**/
 
     SELECT
         school.school_name,
@@ -227,7 +227,7 @@
 |                  |            | Oncology         |                    |
 
 ---
-**Query #8**
+/**Query #8**/
 
     with tmp_table
     AS (
@@ -254,7 +254,7 @@
 | Broward          | 2.0000000000000000 |
 
 ---
-**Query #9**
+/**Query #9**/
 
     SELECT
     	'For  ',
@@ -282,7 +282,7 @@
 | For      | 1              | Programm(s) |    in    | Politology  |
 
 ---
-**Query #10**
+/**Query #10**/
 
     SELECT
       course_name, course_id, credit,
@@ -308,7 +308,7 @@
 | Politology  | 116       | 8700   | 1           |
 
 ---
-**Query #11**
+/**Query #11**/
 
     SELECT
       course_name,
